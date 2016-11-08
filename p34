@@ -1,0 +1,53 @@
+#include<stdio.h>
+int isFactorial(long );
+long factorial(long );
+int main()
+{
+
+	int dem=0;
+	long n;
+	long sum=0;
+
+
+	for(n=145;n<=factorial(9)*5;n++)
+	{
+		if(isFactorial(n))
+		 {
+			sum+=n;
+		 }
+	}
+
+	printf("%d",sum);
+	return 0;
+}
+
+long factorial(long n)
+{
+	int i;
+	long gt=1;
+
+	for(i=1;i<=n;i++)
+		{
+			gt*=i;
+		}
+		
+	return gt;
+}
+int isFactorial(long n)
+{
+	int i;
+	long sum=0;
+	long k;
+	
+	k=n;
+	while (n>=1)
+	{
+		i=n%10;
+		n/=10;
+		sum+=factorial(i);
+	}
+	
+	if(sum==k) return 1;
+	else return 0;
+
+}
