@@ -1,0 +1,78 @@
+#include<stdio.h>
+#include<math.h>
+int isPrime(long );
+int digits(long );
+long circular(long );
+int isNum(long );
+int main()
+{
+	int n;
+	int dem=4;
+	for(n=11;n<=999999;n+=2)
+	{
+		if(isNum(n))
+		{
+			dem++;
+		}	
+	}
+	printf("%d",dem);
+	return 0;
+}
+int isPrime(long n)
+{
+	int i;
+	for(i=2;i<=sqrt(n);i++)
+	{
+		if(n%i==0) return 0;
+	}
+	return 1;
+}
+long circular(long n)
+{
+	int i;
+	long k;
+	long n1;
+	
+	i=digits(n);
+	k=n%10;
+	n/=10;
+	n1=k*pow(10,i-1)+n;
+	
+	return n1;
+	
+}
+int digits(long n)
+{
+	int i=1;
+	
+	while(n>=10)
+	{
+		n/=10;
+		i++;
+	}
+	return i;
+}
+int isNum(long n)
+{
+		int i;
+		int dem=4;
+		int k;
+		long array[100];
+	
+		k=digits(n);
+		array[0]=n;
+		for(i=1;i<=k-1;i++)
+		{
+			array[i]=circular(n);
+			n=circular(n);
+		}
+		
+		for(i=0;i<=k-1;i++)
+		{
+			if(isPrime(array[i])==0)
+			{
+				return 0;
+			}	
+		}
+		return 1;
+}
